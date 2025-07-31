@@ -95,11 +95,5 @@ public class Enrollment {
 		this.status = status;
 	}
 
-	
-	
-	 
-	 
-	
-	
 
 }
