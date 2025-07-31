@@ -100,4 +100,9 @@ public class User {
         this.image = image;
     }
     
+    @PrePersist
+    protected void onCreate() {
+        this.createdDate = new Date(System.currentTimeMillis());
+    }
+
 }
