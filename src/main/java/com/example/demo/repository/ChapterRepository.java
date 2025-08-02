@@ -1,5 +1,9 @@
 package com.example.demo.repository;
 
-public class ChapterRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.model.Chapter;
+
+public interface  ChapterRepository extends  JpaRepository<Chapter, Integer> {
 
 }
