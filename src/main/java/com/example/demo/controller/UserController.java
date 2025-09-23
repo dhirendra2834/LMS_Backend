@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -8,7 +7,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.DTO.LoginRequest;
 import com.example.demo.DTO.LoginResponse;
@@ -45,15 +49,13 @@ public class UserController {
     
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest user) {
-    	
-    	
 		return userService.login(user);
     }
 
 
     // Get user by ID
-    @GetMapping("/get")
-    public ResponseEntity<?> getByUserId(@RequestParam int id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getByUserId(@PathVariable int id) {
         Optional<User> user = userService.getById(id);
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
@@ -67,4 +69,5 @@ public class UserController {
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
+    
 }

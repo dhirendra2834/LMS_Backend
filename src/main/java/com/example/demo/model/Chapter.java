@@ -1,11 +1,13 @@
 package com.example.demo.model;
 
 import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -21,7 +23,8 @@ public class Chapter {
 	private String content;
 	private String videoUrl;
 	
-	@OneToMany
+	@ManyToOne
+	@JoinColumn(name = "subject_id")
 	private Subject subjectId;
 	private Date createDate;
 	
