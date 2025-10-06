@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -45,6 +46,11 @@ public class Course {
 		this.courseImage = courseImage;
 	}
 	
+	 @PrePersist
+	    protected void onCreate() {
+	        this.createDate = new Date(System.currentTimeMillis()); // auto-set current date
+	    }
+	 
 	public Integer getId() {
 		return id;
 	}
@@ -81,8 +87,5 @@ public class Course {
 	public void setCourseImage(Blob courseImage) {
 		this.courseImage = courseImage;
 	}
-	
-	
-	
 	
 }
