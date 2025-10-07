@@ -49,7 +49,7 @@ public class CourseService {
 	}
 
 	// get all course By CreateById
-	public List<Course> getAllCoursesBy(int id) {
+	public List<Course> getAllCoursesByUser(int id) {
 		List<Course> courseData = courseRepository.findByCreatedBy_Id(id);
 		return courseData;
 	}

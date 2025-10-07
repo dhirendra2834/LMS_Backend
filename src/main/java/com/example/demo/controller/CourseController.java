@@ -7,12 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping; 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Course;
 import com.example.demo.service.CourseService;
+
 
 @RestController
 
@@ -48,11 +50,14 @@ public class CourseController {
 	}
 
 //	 get all courses by User 
-	@GetMapping("/getAllCourseByUserID")
-	public List<Course> getAllCourseByUserId(int id){
-		
-		return null;
+	@GetMapping("/getAllCourseByUserID/{id}")
+	public List<Course> getAllCourseByUserId(@PathVariable int id){
+		List<Course> coursesData= courseService.getAllCoursesByUser(id);
+		return coursesData;
 	}
+	
+	@PutMapping("/course/{id}")
+	
 	
 	@GetMapping
 	public List<Course> getAllCourseMethod(){
