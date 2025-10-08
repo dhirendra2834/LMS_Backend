@@ -31,6 +31,12 @@ public class Subject {
     @JoinColumn(name = "course_id", nullable = false)
 	private Course courseId;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "created_by", nullable = false)
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    private User createdBy;
+	
+
 	private Date createDate;
 	
 	public Subject() {
@@ -75,6 +81,15 @@ public class Subject {
 	public void setCourseId(Course courseId) {
 		this.courseId = courseId;
 	}
+	
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
+	}
+	
 	public Date getCreateDate() {
 		return createDate;
 	}
