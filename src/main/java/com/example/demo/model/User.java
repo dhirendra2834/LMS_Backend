@@ -11,7 +11,8 @@ public class User {
     public enum Role {
         STUDENT,
         TEACHER,
-        ADMIN
+        ADMIN,
+        SUPPORT
     }
 
     @Id
