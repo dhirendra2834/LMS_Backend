@@ -77,6 +77,8 @@ public class SubjectService {
 		    
 	}
 	
+	// Update the Subject By SubjectId
+	
 
 	// Delete Subject BY subjectId
 	public String deleteSubjectById(int subjectId) {
