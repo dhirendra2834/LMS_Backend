@@ -1,9 +1,11 @@
 package com.example.demo.service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Course;
@@ -60,12 +62,32 @@ public class SubjectService {
 	
 	// get All Subject by CourseID
 	public List<Subject> getAllSubjectsByCourseId(int courseID){
-		Optional<Course> courseData = courseService.getCourseByCourseId(courseID);
-		if(courseData.isPresent()) {
-			
-		}
+	    Optional<Course> courseData = courseService.getCourseByCourseId(courseID);
+	    if(courseData.isPresent()) {
+	        return subjectRepository.findByCourseId_Id(courseID);
+	    }
+	    return Collections.emptyList();
+	}
+
+	// get Subject by SubjectId
+	public Optional<Subject> getSubjectById(int subjectId) {
+		  
+	     Optional<Subject> subjectData=  subjectRepository.findById(subjectId);
+		 return subjectData;	        
+		    
 	}
 	
+
+	// Delete Subject BY subjectId
+	public String deleteSubjectById(int subjectId) {
+	    try {
+	        subjectRepository.deleteById(subjectId);
+	        return "Subject deleted successfully";
+	    } catch (EmptyResultDataAccessException e) {
+	        return "Subject with ID " + subjectId + " not found";
+	    }
+	}
+
 	
 
 }
